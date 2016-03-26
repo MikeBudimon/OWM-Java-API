@@ -3,15 +3,28 @@ package de.mikebudimon.owm_java_api;
 /**
  * Holds forecast 5days/3hours OpenWeatherMap data.
  */
-public class Forecast5Data {
+public class ForecastWeather {
 
-    public Forecast5Data() {
+    /**
+     * OpenWeatherMap city data.
+     */
+    public City city;
+    /**
+     * OpenWeatherMap list data. Contains main weather, wind and weather info data in a list.
+     */
+    public java.util.List<List> list;
+
+    public ForecastWeather() {
     }
 
     /**
      * OpenWeatherMap city data.
      */
     public static class City {
+        /**
+         * OpenWeatherMap coordination data.
+         */
+        public Coord coord;
         private int id;
         private String name;
         private String country;
@@ -59,17 +72,24 @@ public class Forecast5Data {
             }
         }
 
-        /**
-         * OpenWeatherMap coordination data.
-         */
-        public Coord coord;
-
     }
 
     /**
      * OpenWeatherMap list data. Contains main weather, wind and weather info data in a list.
      */
     public static class List {
+        /**
+         * OpenWeatherMap main weather data.
+         */
+        public Main main;
+        /**
+         * OpenWeatherMap weather info data(description and icon).
+         */
+        public java.util.List<Weather> weather;
+        /**
+         * OpenWeatherMap wind data.
+         */
+        public Wind wind;
         private String dt_txt;
 
         /**
@@ -169,27 +189,5 @@ public class Forecast5Data {
                 return deg;
             }
         }
-
-        /**
-         * OpenWeatherMap main weather data.
-         */
-        public Main main;
-        /**
-         * OpenWeatherMap weather info data(description and icon).
-         */
-        public java.util.List<Weather> weather;
-        /**
-         * OpenWeatherMap wind data.
-         */
-        public Wind wind;
     }
-
-    /**
-     * OpenWeatherMap city data.
-     */
-    public City city;
-    /**
-     * OpenWeatherMap list data. Contains main weather, wind and weather info data in a list.
-     */
-    public java.util.List<List> list;
 }

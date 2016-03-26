@@ -6,14 +6,14 @@ import java.io.IOException;
 
 /**
  * Automatically requests, receives and saves current weather data,
- * Get current weather through currentData object.
+ * Get current weather through currentWeather object.
  */
-public class OWMWeather {
+public class OpenWeatherMap {
 
     private String appId;
     private String city;
-    private CurrentData currentData;
-    private Forecast5Data forecast5Data;
+    private CurrentWeather currentWeather;
+    private ForecastWeather forecastWeather;
 
     /**
      * Constructor
@@ -21,27 +21,27 @@ public class OWMWeather {
      * @param appId AppId from OpenWeatherMap.
      * @param city  City name.
      */
-    public OWMWeather(String appId, String city) {
+    public OpenWeatherMap(String appId, String city) {
         this.appId = appId;
         this.city = city;
     }
 
     /**
-     * @return CurrentData object for receiving requested OpenWeatherMap data.
+     * @return CurrentWeather object for receiving requested OpenWeatherMap data.
      */
-    public CurrentData getCurrentData() {
-        return currentData;
+    public CurrentWeather getCurrentWeather() {
+        return currentWeather;
     }
 
     /**
-     * @return Forecast5Data object for receiving requested OpenWeatherMap data.
+     * @return ForecastWeather object for receiving requested OpenWeatherMap data.
      */
-    public Forecast5Data getForecast5Data() {
-        return forecast5Data;
+    public ForecastWeather getForecastWeather() {
+        return forecastWeather;
     }
 
     /**
-     * Executes a HttpClient request and the response is saved into the CurrentData.class with the help of the Gson library.
+     * Executes a HttpClient request and the response is saved into the CurrentWeather.class with the help of the Gson library.
      *
      * @param option Api-call option
      */
@@ -53,7 +53,7 @@ public class OWMWeather {
             case CURRENT:
                 apiCall = "http://api.openweathermap.org/data/2.5/weather?q=";
                 break;
-            case FORECAST5:
+            case FORECAST:
                 apiCall = "http://api.openweathermap.org/data/2.5/forecast?q=";
                 break;
         }
@@ -63,10 +63,10 @@ public class OWMWeather {
         try {
             switch (option) {
                 case CURRENT:
-                    this.currentData = gson.fromJson(httpClient.getResponse(), CurrentData.class);
+                    this.currentWeather = gson.fromJson(httpClient.getResponse(), CurrentWeather.class);
                     break;
-                case FORECAST5:
-                    this.forecast5Data = gson.fromJson(httpClient.getResponse(), Forecast5Data.class);
+                case FORECAST:
+                    this.forecastWeather = gson.fromJson(httpClient.getResponse(), ForecastWeather.class);
                     break;
             }
         } catch (IOException e) {
@@ -74,11 +74,12 @@ public class OWMWeather {
         }
     }
 
-
     /**
      * Contains OpenWeatherMap Api-call options.
      */
     public enum Option {
-        CURRENT, FORECAST5
+        CURRENT, FORECAST
     }
+
+
 }

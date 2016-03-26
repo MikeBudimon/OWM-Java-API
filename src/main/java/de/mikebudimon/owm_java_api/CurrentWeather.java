@@ -5,13 +5,33 @@ import java.util.List;
 /**
  * Holds current OpenWeatherMap data.
  */
-public class CurrentData {
+public class CurrentWeather {
 
+    /**
+     * OpenWeatherMap coordination data.
+     */
+    public Coord coord;
+    /**
+     * OpenWeatherMap weather info data(description and icon).
+     */
+    public List<Weather> weather;
+    /**
+     * OpenWeatherMap main weather data.
+     */
+    public Main main;
+    /**
+     * OpenWeatherMap wind data.
+     */
+    public Wind wind;
+    /**
+     * OpenWeatherMap system data.
+     */
+    public Sys sys;
     private String name;
     private String dt;
     private int id;
 
-    public CurrentData() {
+    public CurrentWeather() {
     }
 
     /**
@@ -34,7 +54,6 @@ public class CurrentData {
     public int getId() {
         return id;
     }
-
 
     /**
      * OpenWeatherMap coordination data.
@@ -178,26 +197,4 @@ public class CurrentData {
             return sunset;
         }
     }
-
-    /**
-     * OpenWeatherMap coordination data.
-     */
-    public Coord coord;
-    /**
-     * OpenWeatherMap weather info data(description and icon).
-     */
-    public List<Weather> weather;
-    /**
-     * OpenWeatherMap main weather data.
-     */
-    public Main main;
-    /**
-     * OpenWeatherMap wind data.
-     */
-    public Wind wind;
-
-    /**
-     * OpenWeatherMap system data.
-     */
-    public Sys sys;
 }
