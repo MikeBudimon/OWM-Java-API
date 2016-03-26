@@ -59,6 +59,7 @@ public class OpenWeatherMap {
         }
 
         HttpClient httpClient = new HttpClient(apiCall + city + "&" + "appid=" + appId);
+
         Gson gson = new Gson();
         try {
             switch (option) {
