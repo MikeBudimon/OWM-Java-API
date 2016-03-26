@@ -42,7 +42,8 @@ public class OWMWeather {
 
     /**
      * Executes a HttpClient request and the response is saved into the CurrentData.class with the help of the Gson library.
-     *  @param option Api-call option
+     *
+     * @param option Api-call option
      */
     public void executeRequest(Option option) {
 
